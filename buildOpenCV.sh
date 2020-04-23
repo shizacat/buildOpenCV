@@ -2,7 +2,7 @@
 # License: MIT. See license file in root directory
 # Copyright(c) JetsonHacks (2017-2019)
 
-OPENCV_VERSION=4.1.1
+OPENCV_VERSION=4.3.0
 # Jetson Nano
 ARCH_BIN=5.3
 INSTALL_DIR=/usr/local
@@ -98,7 +98,9 @@ sudo apt-get install -y \
     libx264-dev \
     qt5-default \
     zlib1g-dev \
-    pkg-config
+    pkg-config \
+    qt5-default \
+    g++-aarch64-linux-gnu
 
 # We will be supporting OpenGL, we need a little magic to help
 # https://devtalk.nvidia.com/default/topic/1007290/jetson-tx2/building-opencv-with-opengl-support-/post/5141945/#5141945
@@ -168,6 +170,7 @@ time cmake -D CMAKE_BUILD_TYPE=RELEASE \
       -D BUILD_TESTS=OFF \
       -D BUILD_PERF_TESTS=OFF \
       -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \
+      -D WITH_TENGINE=ON \
       $"PACKAGE_OPENCV" \
       ../
 
