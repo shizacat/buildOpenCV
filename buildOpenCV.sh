@@ -76,6 +76,7 @@ sudo apt-add-repository universe
 sudo apt-get update
 
 # Download dependencies for the desired configuration
+# Not found: g++-aarch64-linux-gnu
 cd $WHEREAMI
 sudo apt-get install -y \
     build-essential \
@@ -100,7 +101,12 @@ sudo apt-get install -y \
     zlib1g-dev \
     pkg-config \
     qt5-default \
-    g++-aarch64-linux-gnu
+    g++
+
+if [ $? -ne 0 ]; then
+    echo 'Error install packages'
+    exit 1
+fi
 
 # We will be supporting OpenGL, we need a little magic to help
 # https://devtalk.nvidia.com/default/topic/1007290/jetson-tx2/building-opencv-with-opengl-support-/post/5141945/#5141945
